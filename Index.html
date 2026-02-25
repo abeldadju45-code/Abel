@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cours en ligne</title>
+  <style>
+    .container {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+    .video-zone {
+      flex: 2;
+      background: #333;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .chat-zone {
+      flex: 1;
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+    }
+    input {
+      width: 80%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      padding: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .math-symbols {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cours en ligne : <span id="cours-titre">Mathématiques</span></h1>
+  <div class="container">
+    <div class="video-zone">
+      <video id="video-principal" controls>
+        <source src="cours.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+      <div>
+        <button onclick="demarrerVideo()">Démarrer vidéo</button>
+        <button onclick="partagerEcran()">Partager écran</button>
+      </div>
+    </div>
+    <div class="chat-zone">
+      <h3>Discussion</h3>
+      <div id="messages" style="height:300px; overflow-y:auto; border:1px solid #ddd;">
+        <!-- Messages ici -->
+      </div>
+      <div class="math-symbols">
+        <button onclick="insertSymbol('±')">±</button>
+        <button onclick="insertSymbol('∞')">∞</button>
+        <button onclick="insertSymbol('√')">√</button>
+        <button onclick="insertSymbol('∝')">∝</button>
+        <button onclick="insertSymbol('≈')">≈</button>
+        <button onclick="insertSymbol('≡')">≡</button>
+        <button onclick="insertSymbol('≠')">≠</button>
+        <button onclick="insertSymbol('≤')">≤</button>
+        <button onclick="insertSymbol('≥')">≥</button>
+        <button onclick="insertSymbol('×')">×</button>
+        <button onclick="insertSymbol('÷')">÷</button>
+      </div>
+      <input type="text" id="message-input" placeholder="Écrire un message">
+      <button onclick="envoyerMessage()">Envoyer</button>
+    </div>
+  </div>
+  <script>
+    function demarrerVideo() {
+      const video = document.getElementById('video-principal');
+      video.play();
+    }
+
+    function partagerEcran() {
+      alert('Fonctionnalité à implémenter (ex: WebRTC pour partage d\'écran)');
+    }
+
+    function envoyerMessage() {
+      const msg = document.getElementById('message-input').value;
+      if (msg) {
+        document.getElementById('messages').innerHTML += `<p><b>Vous:</b> ${msg}</p>`;
+        document.getElementById('message-input').value = '';
+        // À compléter : envoi réel du message (ex: WebSocket)
+      }
+    }
+
+    function insertSymbol(symbol) {
+      const input = document.getElementById('message-input');
+      input.value += symbol;
+      input.focus();
+    }
+  </script>
+</body>
+</html>
